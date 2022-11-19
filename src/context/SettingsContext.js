@@ -18,7 +18,7 @@ export const GeneralProvider = ({children}) =>{
 
     const mode = ["work", "short break", "long break"]
 
-    /* swich timer mode */
+    /* swich timer mode manually*/
     useEffect (() => {
         if (timerMode === "work"){
             setTime(workTime)
@@ -35,8 +35,9 @@ export const GeneralProvider = ({children}) =>{
             setIsTimerStart(false)
             setMessage('Time for a break!')
         }
-    }, [timerMode])
+    }, [timerMode, workTime, shortBreakTime, longBreakInterval])
 
+    /* automatic timer mode swich*/
 
     useEffect(() => {
         if (time === 0) {
