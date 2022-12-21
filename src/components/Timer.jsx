@@ -1,6 +1,16 @@
 import React, { useEffect, useContext } from 'react'
 import { GeneralContext } from '../context/SettingsContext';
 import SettingsForm from './SettingsForm'
+import s from './timerStyle.module.css'
+import {
+    SettingOutlined, 
+    PlayCircleOutlined, 
+    PauseCircleOutlined,
+    RedoOutlined
+} from '@ant-design/icons'
+import { Button } from 'antd'
+import { Segmented } from 'antd'
+
 
 function Timer() {
     const { mode,
@@ -12,7 +22,7 @@ function Timer() {
             initialTime, setInitialTime,
             isTimerStart, setIsTimerStart,
             isSettingsOn, setIsSettingsOn,
-            intervalCounter, setIntervalCounter,
+            intervalCounter,
             message,
         } = useContext(GeneralContext)
 
@@ -33,11 +43,6 @@ function Timer() {
         return () => clearInterval(interval)
         }
     }, [isTimerStart, time])
-
-    
-    const handleSetMode = (e) => {
-        setTimerMode(e.target.value)
-    }
     
     const toggleTimer = () => {
         setIsTimerStart(!isTimerStart)
@@ -58,17 +63,19 @@ function Timer() {
     }
 
     return (
-        <div>
+        <div className={s.main}>
             <div>
-                <button onClick={() => setIsSettingsOn(true)}>Settings</button>
+                <SettingOutlined onClick={() => setIsSettingsOn(true)}/>
             </div>
             <div className='timerMode'>
-                {mode.map((mode, i) => <button key={i} value={mode} onClick={(e) => handleSetMode(e)}>{mode}</button>)}
+                <Segmented options={mode} value={mode} onChange={(e) => setTimerMode(e)}/>
             </div>
             <div className='timer'>{timerFormat(time)}</div>
             <div className='timerAction'>
-                <button onClick={toggleTimer}>{isTimerStart ? "Pause" : "Start"}</button>
-                <button onClick={resetTimer}>Reset</button>
+                <Button 
+                    onClick={toggleTimer}
+                    icon={isTimerStart ? <PauseCircleOutlined /> : <PlayCircleOutlined />} />
+                <Button onClick={resetTimer} icon={<RedoOutlined />} />
             </div>
             <div>{intervalCounter}</div>
             <div>{message}</div>
