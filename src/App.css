@@ -2,21 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-header{
-  display: flex;
-  justify-content: center;
-  padding: 10px;
 }
 
 main{
-text-align: center;
-}
-
-.timer {
-  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
 }

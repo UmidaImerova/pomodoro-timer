@@ -1,15 +1,14 @@
 import React, { useEffect, useContext } from 'react'
 import { GeneralContext } from '../context/SettingsContext';
 import SettingsForm from './SettingsForm'
-import s from './timerStyle.module.css'
+import s from './timerStyle.module.scss'
 import {
     SettingOutlined, 
     PlayCircleOutlined, 
     PauseCircleOutlined,
     RedoOutlined
 } from '@ant-design/icons'
-import { Button } from 'antd'
-import { Segmented } from 'antd'
+import { Button, Segmented } from 'antd'
 
 
 function Timer() {
@@ -64,21 +63,37 @@ function Timer() {
 
     return (
         <div className={s.main}>
-            <div>
-                <SettingOutlined onClick={() => setIsSettingsOn(true)}/>
+            <div className={s.timerMode}>
+                <Segmented 
+                    options={mode} 
+                    style={{
+                        backgroundColor: 'transparent', 
+                        fontFamily: 'Noto Serif Malayalam',
+              }} size="large" onChange={(e) => setTimerMode(e)}/>
             </div>
-            <div className='timerMode'>
-                <Segmented options={mode} value={mode} onChange={(e) => setTimerMode(e)}/>
-            </div>
-            <div className='timer'>{timerFormat(time)}</div>
-            <div className='timerAction'>
+            <div className={s.timer}>{timerFormat(time)}</div>
+            <div className={s.timerAction}>
                 <Button 
                     onClick={toggleTimer}
-                    icon={isTimerStart ? <PauseCircleOutlined /> : <PlayCircleOutlined />} />
-                <Button onClick={resetTimer} icon={<RedoOutlined />} />
+                    icon={isTimerStart 
+                    ? <PauseCircleOutlined style={{ fontSize: '32px'}}/> 
+                    : <PlayCircleOutlined style={{ fontSize: '32px'}}/>}
+                    ghost
+                    shape= 'circle'
+                    style={{border: 'none', margin: '5px'}} />
+                <Button 
+                    onClick={resetTimer} 
+                    icon={<RedoOutlined style={{ fontSize: '32px'}} />} ghost
+                    shape= 'circle'
+                    style={{border: 'none', margin: '5px'}} />
+                <Button
+                    onClick={() => setIsSettingsOn(true)}
+                    icon={<SettingOutlined  style={{ fontSize: '32px'}}/>} ghost
+                    shape= 'circle'
+                    style={{border: 'none', margin: '5px'}} />
             </div>
-            <div>{intervalCounter}</div>
-            <div>{message}</div>
+            <div className={s.intervalCounter}>Number of interval {intervalCounter}</div>
+            <div className={s.message}>{message}</div>
            {isSettingsOn ? <SettingsForm/> : ''}
         </div>
     )
