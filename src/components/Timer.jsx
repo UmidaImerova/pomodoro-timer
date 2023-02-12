@@ -41,7 +41,7 @@ function Timer() {
             }, 1000);
         return () => clearInterval(interval)
         }
-    }, [isTimerStart, time])
+    }, [isTimerStart, time, setTime])
     
     const toggleTimer = () => {
         setIsTimerStart(!isTimerStart)

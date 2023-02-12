@@ -1,0 +1,64 @@
+.modal_content{
+    background-color: yellow;
+    z-index: 6;
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    box-sizing: border-box;
+    padding: 5px;
+
+    header{
+        width: 100%;
+        padding: 8px;
+        display: flex;
+        justify-content: space-between;
+
+        h3{
+            width: 90%;
+            text-align: left;
+            font-size: 1.5rem;
+        }
+        button{
+            border: none;
+            background-color: transparent;
+        }
+    }
+
+    main{
+        height: 90%;
+        width: 100%;
+
+        .timer{
+            margin: 5px;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+
+            h4{
+                width: 100%;
+            }
+            .timer_block{
+                width: 30%;
+                margin-right: 10px;
+                margin-top: 5px;
+                
+
+                label{
+                    display: table-caption;
+                    font-size: 14px;
+                }
+        
+                input{
+                    width: 98px;
+                    height: 38px;
+                    margin-top: 5px;
+                    padding: 3px;
+                    } 
+                
+            }
+
+            
+        }
+    }
+}
